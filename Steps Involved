@@ -1,3 +1,8 @@
+
+                                                  Enterprise Cloud-Based Web Application on AWS
+
+
+
 COMPUTE  SETUP & STORAGE & SECURITY (IAM Roles)
 STEP 1: EC2 instance 
 The cloud infrastructure for this project was built using Amazon Web Services. An Amazon EC2 instance was launched using the Amazon Linux operating system under the free tier configuration. The instance was configured with a key pair for secure SSH access and assigned a public IP address to allow external connectivity. The EC2 instance acts as the main compute resource, hosting the Flask-based web application and handling incoming user requests.
