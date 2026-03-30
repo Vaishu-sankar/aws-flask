@@ -1,0 +1,50 @@
+COMPUTE  SETUP & STORAGE & SECURITY (IAM Roles)
+STEP 1: EC2 instance 
+The cloud infrastructure for this project was built using Amazon Web Services. An Amazon EC2 instance was launched using the Amazon Linux operating system under the free tier configuration. The instance was configured with a key pair for secure SSH access and assigned a public IP address to allow external connectivity. The EC2 instance acts as the main compute resource, hosting the Flask-based web application and handling incoming user requests.
+The application initially failed to run due to permission restrictions on port 80. This was resolved by changing the application port to 5000 and updating the EC2 security group to allow inbound traffic on that port.
+The Flask application was successfully deployed and executed on the EC2 instance. It was configured to run on port 5000, and the application was accessible through the public IP address. The output confirmed that the web server was functioning correctly.
+Link : http://13.126.218.113:5000
+Output: My AWS Web Application Running - Created by Vaishu
+
+STEP 2: Security Group
+To control network access, a AWS Security Groups configuration was applied to the EC2 instance. The security group was set up to allow inbound traffic on port 22 for SSH access, port 80 for HTTP, and port 5000 for the Flask application. This ensured that only required ports were open while maintaining basic security. The rules were configured to allow access from any IP address for testing purposes, enabling easy connectivity during development.    
+
+STEP 3: Storage & IAM(roles)
+To control network access, a AWS Security Groups configuration was applied to the EC2 instance. The security group was set up to allow inbound traffic on port 22 for SSH access, port 80 for HTTP, and port 5000 for the Flask application. This ensured that only required ports were open while maintaining basic security. The rules were configured to allow access from any IP address for testing purposes, enabling easy connectivity during development.
+Link : http://13.126.218.113:5000/s3
+Output: elasticbeanstalk-us-east-1-890446661520
+vaishu-webapp-storage
+
+NETWORKING SETUP 
+
+STEP 1:  Create VPC
+ A virtual Private Cloud (VPC) was created to isolated the cloud infrastructure. The VPC uses the CIDR block 10.0.0.0/16 allowing scalable IP addressing.
+STEP 2:  Subnets
+  Two subnets were created in different availability zones to support high availability. 
+STEP 3:    Internet  Gateway 
+   Internet gateway was created and attached to enable internet access.
+STEP 4:  Route Table
+  A route table was configured with a default route 0.0.0.0/0 pointing to the internet gateway allowing inbound and outbound traffic. 
+STEP:5 Load balancer
+A target group was created to route incoming traffic to EC2 instances. Health checks were configured to monitor application availability.
+An Application Load Balancer was configured to distribute incoming traffic across the EC2 instance. This improves application availability and ensures scalability by handling multiple requests efficiently.
+STEP:6 Auto scaling group
+An Amazon Machine Image (AMI) was created from the configured EC2 instance to serve as a template for launching multiple instances in the Auto Scaling group.
+Auto Scaling can be implemented to automatically manage the number of EC2 instances based on application load. This ensures high availability, scalability, and cost efficiency in production environments. 
+Link: http:// load-balancer-2-1570895976.ap-south-1.elb.amazonaws.com 
+Output:** But Load balancer DNS is not working (504 Gateway Time out)**
+
+ DATABASE 
+ STEP 1: Create RDS Instance
+ An Amazon RDS MySQL database instance was created to store application data. The database was configured using the free tier template with public access enabled for testing purposes.
+ STEP 2: Configure Database Access
+ The database security group was configured to allow inbound traffic on port 3306, enabling communication between the EC2 instance and the RDS database.
+STEP 3: Connect EC2 to RDS
+The EC2 instance was successfully connected to the RDS database using the MySQL client, verifying that the application server can communicate with the database layer.
+
+
+MONITORING 
+ Using cloud watch
+Monitoring was implemented using Amazon CloudWatch to track system performance and application health. Key metrics such as CPU utilization, network traffic, and instance status were continuously monitored. CloudWatch alarms were configured to notify administrators when CPU usage exceeded predefined thresholds. Additionally, log monitoring was enabled to capture application and system-level events, ensuring proactive issue detection and resolution.
+
+
